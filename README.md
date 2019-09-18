@@ -26,9 +26,9 @@ Include the autoloader to load the classes in places you want to use the classes
 require 'vendor/autoload.php';
 ```
 
-Running tests
---------------
-Post installation run the following command
+Running tests locally
+----------------------
+Clone the repo and install composer dependencies. Run the following command in the project directory
 
 ```
 .\\vendor\\bin\\phpunit
