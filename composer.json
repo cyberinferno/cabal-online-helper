@@ -1,0 +1,23 @@
+{
+    "name": "cyberinferno/cabal-online-helper",
+    "description": "Cabal Online helper classes",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Karthik P",
+            "email": "karthikreadnovel@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "6.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "cyberinferno\\Cabal\\Helpers\\": "src/"
+        }
+    }
+}
