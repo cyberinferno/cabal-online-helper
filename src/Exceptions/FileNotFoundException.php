@@ -1,15 +1,21 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: cyberinferno
- * Date: 21-Sep-19
- * Time: 1:06 PM
- */
 
 namespace cyberinferno\Cabal\Helpers\Exceptions;
 
-
-class FileNotFoundException
+/**
+ * Class FileNotFoundException
+ *
+ * Exception thrown when a specified file was not found or could not be accessed
+ *
+ * @package cyberinferno\Cabal\Helpers\Exceptions
+ * @author Karthik P
+ */
+class FileNotFoundException extends \Exception
 {
-
+    public function __construct($message = '', $code = 0, \Exception $previous = null) {
+        if (empty($message)) {
+            $message = 'File not found';
+        }
+        parent::__construct($message, $code, $previous);
+    }
 }

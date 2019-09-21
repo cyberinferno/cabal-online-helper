@@ -10,10 +10,14 @@
         }
     ],
     "require": {
-        "php": ">=7.0"
+        "php": ">=7.0",
+        "ext-libxml": "*",
+        "ext-dom": "*",
+        "ext-simplexml": "*"
     },
     "require-dev": {
-        "phpunit/phpunit": "6.*"
+        "phpunit/phpunit": "6.*",
+        "mikey179/vfsstream": "^1.6"
     },
     "autoload": {
         "psr-4": {

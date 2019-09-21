@@ -40,6 +40,6 @@ class GameConstantsTest extends TestCase
         $myClass = new cyberinferno\Cabal\Helpers\GameConstants();
         $result = $myClass::listAuras();
         $this->assertTrue(is_array($result));
-        $this->assertEquals(6, count($result));
+        $this->assertEquals(7, count($result));
     }
 }
