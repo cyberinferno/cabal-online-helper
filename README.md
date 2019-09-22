@@ -1,6 +1,8 @@
 # Cabal Online helper classes
 Cabal Online helper classes to faciliate building of cabal server tools using PHP
 
+[![Build Status](https://travis-ci.org/cyberinferno/cabal-online-helper.png)](https://travis-ci.org/cyberinferno/cabal-online-helper)
+
 Installation
 ------------
 
