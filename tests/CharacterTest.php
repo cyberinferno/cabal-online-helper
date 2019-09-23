@@ -3,6 +3,9 @@
 use cyberinferno\Cabal\Helpers\Character;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @covers \cyberinferno\Cabal\Helpers\Character
+ */
 class CharacterTest extends TestCase
 {
     public function testIsThereAnySyntaxError()

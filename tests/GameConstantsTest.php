@@ -3,6 +3,9 @@
 use cyberinferno\Cabal\Helpers\GameConstants;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @covers \cyberinferno\Cabal\Helpers\GameConstants
+ */
 class GameConstantsTest extends TestCase
 {
     public function testIsThereAnySyntaxError()

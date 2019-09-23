@@ -3,6 +3,9 @@
 use cyberinferno\Cabal\Helpers\FileSystem\Client\CabalMsg;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @covers \cyberinferno\Cabal\Helpers\FileSystem\Client\CabalMsg
+ */
 class CabalMsgTest extends TestCase
 {
     public $fileSystem;

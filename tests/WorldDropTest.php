@@ -4,6 +4,9 @@ use cyberinferno\Cabal\Helpers\FileSystem\Server\WorldDrop;
 use org\bovigo\vfs\vfsStream;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @covers \cyberinferno\Cabal\Helpers\FileSystem\Server\WorldDrop
+ */
 class WorldDropTest extends TestCase
 {
     public $fileSystem;

@@ -3,6 +3,9 @@
 use cyberinferno\Cabal\Helpers\Item;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @covers \cyberinferno\Cabal\Helpers\Item
+ */
 class ItemTest extends TestCase
 {
     public function testIsThereAnySyntaxError()
