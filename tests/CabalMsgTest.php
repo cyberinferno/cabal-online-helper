@@ -1,6 +1,9 @@
 <?php
 
-class CabalMsgTest extends \PHPUnit\Framework\TestCase
+use cyberinferno\Cabal\Helpers\FileSystem\Client\CabalMsg;
+use PHPUnit\Framework\TestCase;
+
+class CabalMsgTest extends TestCase
 {
     public $fileSystem;
 
@@ -17,7 +20,7 @@ class CabalMsgTest extends \PHPUnit\Framework\TestCase
 
     public function testIsThereAnySyntaxError()
     {
-        $myClass = new \cyberinferno\Cabal\Helpers\FileSystem\Client\CabalMsg($this->fileSystem->url() . '/client/cabal_msg.dec');
+        $myClass = new CabalMsg($this->fileSystem->url() . '/client/cabal_msg.dec');
         $this->assertTrue(is_object($myClass));
         unset($myClass);
     }
@@ -27,7 +30,7 @@ class CabalMsgTest extends \PHPUnit\Framework\TestCase
      */
     public function testFileNotFoundExceptionIsThrownWhenNoFile()
     {
-        $myClass = new \cyberinferno\Cabal\Helpers\FileSystem\Client\CabalMsg(
+        $myClass = new CabalMsg(
             $this->fileSystem->url() . '/unknown.dec'
         );
         unset($myClass);
@@ -38,7 +41,7 @@ class CabalMsgTest extends \PHPUnit\Framework\TestCase
      */
     public function testFileBadFormatExceptionIsThrownWhenNoFile()
     {
-        $myClass = new \cyberinferno\Cabal\Helpers\FileSystem\Client\CabalMsg(
+        $myClass = new CabalMsg(
             $this->fileSystem->url() . '/client/cabal_msg_invalid.dec'
         );
         unset($myClass);
@@ -46,7 +49,7 @@ class CabalMsgTest extends \PHPUnit\Framework\TestCase
 
     public function testGetXmlObject()
     {
-        $myClass = new \cyberinferno\Cabal\Helpers\FileSystem\Client\CabalMsg(
+        $myClass = new CabalMsg(
             $this->fileSystem->url() . '/client/cabal_msg.dec'
         );
         $result = $myClass->getXmlObject();
@@ -55,7 +58,7 @@ class CabalMsgTest extends \PHPUnit\Framework\TestCase
 
     public function testGetArray()
     {
-        $myClass = new \cyberinferno\Cabal\Helpers\FileSystem\Client\CabalMsg(
+        $myClass = new CabalMsg(
             $this->fileSystem->url() . '/client/cabal_msg.dec'
         );
         $result = $myClass->getArray();

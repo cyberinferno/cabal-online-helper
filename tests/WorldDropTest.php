@@ -1,6 +1,10 @@
 <?php
 
-class WorldDropTest extends \PHPUnit\Framework\TestCase
+use cyberinferno\Cabal\Helpers\FileSystem\Server\WorldDrop;
+use org\bovigo\vfs\vfsStream;
+use PHPUnit\Framework\TestCase;
+
+class WorldDropTest extends TestCase
 {
     public $fileSystem;
 
@@ -12,12 +16,12 @@ class WorldDropTest extends \PHPUnit\Framework\TestCase
                 'World_drop_invalid.scp' => '[World'
             ]
         ];
-        $this->fileSystem = \org\bovigo\vfs\vfsStream::setup('root', 444, $directory);
+        $this->fileSystem = vfsStream::setup('root', 444, $directory);
     }
 
     public function testIsThereAnySyntaxError()
     {
-        $myClass = new \cyberinferno\Cabal\Helpers\FileSystem\Server\WorldDrop($this->fileSystem->url() . '/server/World_drop.scp');
+        $myClass = new WorldDrop($this->fileSystem->url() . '/server/World_drop.scp');
         $this->assertTrue(is_object($myClass));
         unset($myClass);
     }
@@ -27,7 +31,7 @@ class WorldDropTest extends \PHPUnit\Framework\TestCase
      */
     public function testFileNotFoundExceptionIsThrownWhenNoFile()
     {
-        $myClass = new \cyberinferno\Cabal\Helpers\FileSystem\Server\WorldDrop(
+        $myClass = new WorldDrop(
             $this->fileSystem->url() . '/unknown.dec'
         );
         unset($myClass);
@@ -38,7 +42,7 @@ class WorldDropTest extends \PHPUnit\Framework\TestCase
      */
     public function testFileBadFormatExceptionIsThrownWhenNoFile()
     {
-        $myClass = new \cyberinferno\Cabal\Helpers\FileSystem\Server\WorldDrop(
+        $myClass = new WorldDrop(
             $this->fileSystem->url() . '/server/World_drop_invalid.scp'
         );
         unset($myClass);
@@ -46,7 +50,7 @@ class WorldDropTest extends \PHPUnit\Framework\TestCase
 
     public function testGetArray()
     {
-        $myClass = new \cyberinferno\Cabal\Helpers\FileSystem\Server\WorldDrop(
+        $myClass = new WorldDrop(
             $this->fileSystem->url() . '/server/World_drop.scp'
         );
         $result = $myClass->getArray();

@@ -1,25 +1,27 @@
 <?php
+
+use cyberinferno\Cabal\Helpers\Character;
 use PHPUnit\Framework\TestCase;
 
 class CharacterTest extends TestCase
 {
     public function testIsThereAnySyntaxError()
     {
-        $myClass = new cyberinferno\Cabal\Helpers\Character();
+        $myClass = new Character();
         $this->assertTrue(is_object($myClass));
         unset($myClass);
     }
 
     public function testEncodeStyle()
     {
-        $myClass = new cyberinferno\Cabal\Helpers\Character();
+        $myClass = new Character();
         $result = $myClass::EncodeStyle(2,12,4,0,1,20,5);
         $this->assertEquals(159908261, $result);
     }
 
     public function testDecodeStyle()
     {
-        $myClass = new cyberinferno\Cabal\Helpers\Character();
+        $myClass = new Character();
         $result = $myClass::DecodeStyle(159908261);
         $this->assertArrayHasKey('gender', $result);
         $this->assertArrayHasKey('aura', $result);
@@ -39,14 +41,14 @@ class CharacterTest extends TestCase
 
     public function testEncodePosition()
     {
-        $myClass = new cyberinferno\Cabal\Helpers\Character();
+        $myClass = new Character();
         $result = $myClass::EncodePosition(24,18);
         $this->assertEquals(1572882, $result);
     }
 
     public function testDecodePosition()
     {
-        $myClass = new cyberinferno\Cabal\Helpers\Character();
+        $myClass = new Character();
         $result = $myClass::DecodePosition(1572882);
         $this->assertArrayHasKey('x', $result);
         $this->assertArrayHasKey('y', $result);
