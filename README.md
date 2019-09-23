@@ -3,6 +3,7 @@ Cabal Online helper classes
 [![Build Status](https://travis-ci.org/cyberinferno/cabal-online-helper.png)](https://travis-ci.org/cyberinferno/cabal-online-helper)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/cyberinferno/cabal-online-helper/badges/quality-score.png)](https://scrutinizer-ci.com/g/cyberinferno/cabal-online-helper/)
 [![Code Coverage](https://scrutinizer-ci.com/g/cyberinferno/cabal-online-helper/badges/coverage.png)](https://scrutinizer-ci.com/g/cyberinferno/cabal-online-helper/)
+[![Maintainability](https://api.codeclimate.com/v1/badges/8e70f19e4d9b5cb1af0f/maintainability)](https://codeclimate.com/github/cyberinferno/cabal-online-helper/maintainability)
 
 Cabal Online helper classes to faciliate building of cabal server tools using PHP
 
