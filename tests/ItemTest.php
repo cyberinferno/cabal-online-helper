@@ -81,6 +81,14 @@ class ItemTest extends TestCase
         $this->assertEquals(Item::ITEM_BIND_CHARACTER_ON_USAGE_CONSTANT, $myClass->getBinding());
     }
 
+    public function testSetNoBinding()
+    {
+        $myClass = new Item(1);
+        $result = $myClass->setCharacterBindingOnUsage()->setNoBinding();
+        $this->assertTrue($result instanceof Item);
+        $this->assertEquals(0, $myClass->getBinding());
+    }
+
     public function testGenerateItemCode()
     {
         $myClass = new Item(1);

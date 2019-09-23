@@ -122,6 +122,17 @@ class Item
     }
 
     /**
+     * Removes the item binding
+     *
+     * @return Item $this
+     */
+    public function setNoBinding()
+    {
+        $this->_itemBinding = 0;
+        return $this;
+    }
+
+    /**
      * Returns the generated item code based up on the criteria set
      *
      * @return int
