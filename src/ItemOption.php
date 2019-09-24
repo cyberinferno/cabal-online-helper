@@ -19,7 +19,7 @@ class ItemOption
 {
     const MAX_OPTIONS = 4;
 
-    const MIN_SLOTS = 1;
+    const MIN_SLOTS = 0;
     const MAX_SLOTS = 4;
 
     const MIN_CRAFTS = 0;
@@ -63,7 +63,7 @@ class ItemOption
      * @param int $crafts
      * @throws \Exception
      */
-    public function __construct($slots, $crafts = 0)
+    public function __construct($slots = 0, $crafts = 0)
     {
         if ($slots < self::MIN_SLOTS) {
             $slots = self::MIN_SLOTS;

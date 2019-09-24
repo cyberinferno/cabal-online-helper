@@ -26,7 +26,7 @@ class ItemOptionTest extends TestCase
     {
         $myClass = new ItemOption(-1);
         $result = $myClass->getSlots();
-        $this->assertEquals(1, $result);
+        $this->assertEquals(0, $result);
     }
 
     public function testMaxSlots()
@@ -62,7 +62,7 @@ class ItemOptionTest extends TestCase
      */
     public function testMaxOptionExceptionIsThrownWhenMaxOptionReached()
     {
-        $myClass = new ItemOption(4,3);
+        $myClass = new ItemOption(4, 3);
         unset($myClass);
     }
 
@@ -103,7 +103,7 @@ class ItemOptionTest extends TestCase
 
     public function testGetCraftOptions()
     {
-        $myClass = new ItemOption(1,1);
+        $myClass = new ItemOption(1, 1);
         $result = $myClass->getCraftOptions();
         $this->assertTrue(is_array($result));
         $this->assertEquals(0, count($result));
@@ -111,8 +111,8 @@ class ItemOptionTest extends TestCase
 
     public function testSetCraftOption()
     {
-        $myClass = new ItemOption(1,1);
-        $result = $myClass->setCraftOption(9,1);
+        $myClass = new ItemOption(1, 1);
+        $result = $myClass->setCraftOption(9, 1);
         $this->assertTrue($result instanceof ItemOption);
         $this->assertEquals(1, count($myClass->getCraftOptions()));
     }
@@ -122,8 +122,8 @@ class ItemOptionTest extends TestCase
      */
     public function testIfInvalidCraftLevelExceptionIsThrownInSetCraftOption()
     {
-        $myClass = new ItemOption(1,1);
-        $myClass->setCraftOption(1,1);
+        $myClass = new ItemOption(1, 1);
+        $myClass->setCraftOption(1, 1);
     }
 
     /**
@@ -131,8 +131,8 @@ class ItemOptionTest extends TestCase
      */
     public function testIfInvalidOptionExceptionIsThrownInSetCraftOption()
     {
-        $myClass = new ItemOption(1,1);
-        $myClass->setCraftOption(9,0);
+        $myClass = new ItemOption(1, 1);
+        $myClass->setCraftOption(9, 0);
     }
 
     /**
@@ -140,9 +140,9 @@ class ItemOptionTest extends TestCase
      */
     public function testIfOptionLimitExceptionIsThrownInSetCraftOption()
     {
-        $myClass = new ItemOption(1,1);
-        $result = $myClass->setCraftOption(9,1);
-        $result = $myClass->setCraftOption(9,1);
+        $myClass = new ItemOption(1, 1);
+        $result = $myClass->setCraftOption(9, 1);
+        $result = $myClass->setCraftOption(9, 1);
     }
 
     public function testGenerate()
@@ -181,5 +181,14 @@ class ItemOptionTest extends TestCase
         $myClass->setCraftOption('F', 'F');
         $this->assertEquals('300000FF', $myClass->generate(ItemOption::OUTPUT_FORMAT_HEXADECIMAL));
 
+        // A 0 option item
+        $myClass = new ItemOption();
+        $this->assertEquals('00000000', $myClass->generate(ItemOption::OUTPUT_FORMAT_HEXADECIMAL));
+
+        // A 1 craft item
+        $myClass = new ItemOption(0, 1);
+        // All skill amp with max craft
+        $myClass->setCraftOption('F', 'F');
+        $this->assertEquals('000000FF', $myClass->generate(ItemOption::OUTPUT_FORMAT_HEXADECIMAL));
     }
 }
