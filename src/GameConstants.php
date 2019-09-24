@@ -62,4 +62,37 @@ class GameConstants
             12 => 'Lightning Aura'
         ];
     }
+
+    public static function listItemDurations()
+    {
+        return [
+            0 => 'No Duration',
+            1 => '1 Hour',
+            2 => '2 Hours',
+            3 => '3 Hours',
+            4 => '4 Hours',
+            5 => '5 Hours',
+            6 => '6 Hours',
+            7 => '10 Hours',
+            8 => '12 Hours',
+            9 => '1 Day',
+            10 => '3 Days',
+            11 => '5 Days',
+            12 => '7 Days',
+            13 => '10 Days',
+            14 => '14 Days',
+            15 => '15 Days',
+            16 => '20 Days',
+            17 => '30 Days',
+            18 => '45 Days',
+            19 => '60 Days',
+            20 => '90 Days',
+            21 => '100 Days',
+            22 => '120 Days',
+            23 => '180 Days',
+            24 => '270 Days',
+            25 => '365 Days',
+            31 => 'Permanent'
+        ];
+    }
 }
