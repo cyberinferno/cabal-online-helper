@@ -5,7 +5,7 @@ namespace cyberinferno\Cabal\Helpers;
 /**
  * Class ItemCode
  *
- * Contains methods helpful to generate item code as well as item option
+ * Contains methods helpful to generate item code
  *
  * @package cyberinferno\Cabal\Helpers
  * @author Karthik P
