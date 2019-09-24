@@ -60,9 +60,7 @@ class CabalMsg extends File
      */
     protected function validateFormat()
     {
-        if (filesize($this->_filePath) == 0 || $this->getFileContents() === null) {
-            throw new FileBadFormatException();
-        }
+        parent::validateFormat();
         $fileContents = $this->getFileContents();
         if (substr($fileContents, 0, strlen('<cabal_message>')) !== '<cabal_message>') {
             throw new FileBadFormatException();
