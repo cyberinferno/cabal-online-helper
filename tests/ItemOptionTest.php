@@ -190,5 +190,11 @@ class ItemOptionTest extends TestCase
         // All skill amp with max craft
         $myClass->setCraftOption('F', 'F');
         $this->assertEquals('000000FF', $myClass->generate(ItemOption::OUTPUT_FORMAT_HEXADECIMAL));
+
+        // A 4 slotted item
+        $myClass = new ItemOption(4);
+        // 4 slot sword amp which shouldn't work
+        $myClass->setSlotOption(8)->setSlotOption(8)->setSlotOption(8)->setSlotOption(8);
+        $this->assertEquals('40000038', $myClass->generate(ItemOption::OUTPUT_FORMAT_HEXADECIMAL));
     }
 }

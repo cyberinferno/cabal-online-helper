@@ -189,6 +189,10 @@ class ItemOption
         // We calculate slots to fill based upon slot options
         foreach ($this->_slotOptions as $slotOption) {
             if (isset($slotsToFillArray[$slotOption['option']])) {
+                // Item cannot have 4 set of same options
+                if ($slotsToFillArray[$slotOption['option']] == 3) {
+                    continue;
+                }
                 $slotsToFillArray[$slotOption['option']]++;
             } else {
                 $slotsToFillArray[$slotOption['option']] = 1;
