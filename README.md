@@ -60,6 +60,27 @@ $item->setAccountBinding(); // Setting the item to be account bound
 $item->setGrade(10); // Setting item to be grade 10
 // This will return the final item code for Account bound Training Katana +10
 $generatedItemCode = $item->generate();
+
+// Item option generator
+// A 4 slotted item
+$itemOption = new cyberinferno\Cabal\Helpers\ItemOption(4);
+// 1 slot Max crit/HP steal
+$itemOption->setSlotOption('C');
+// 1 sword amp
+$itemOption->setSlotOption(8);
+// 1 HP/DEF
+$itemOption->setSlotOption(1);
+// 1 DEF/ATT RATE
+$itemOption->setSlotOption(2);
+// This will return integer value of the item option i.e integer value of 0x4211181C
+$generatedItemOption = $itemOption->generate();
+
+// A 3 slotted item with 1 craft option
+$myClass = new cyberinferno\Cabal\Helpers\ItemOption(3, 1);
+// All skill amp with max craft
+$myClass->setCraftOption('F', 'F');
+// This will return hexadecimal string item option i.e '300000FF'
+$generatedItemOption = $itemOption->generate(cyberinferno\Cabal\Helpers\ItemOption::OUTPUT_FORMAT_HEXADECIMAL);
 ```
 
 Running tests locally
