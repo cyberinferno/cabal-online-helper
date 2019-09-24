@@ -3,14 +3,14 @@
 namespace cyberinferno\Cabal\Helpers;
 
 /**
- * Class Item
+ * Class ItemCode
  *
  * Contains methods helpful to generate item code as well as item option
  *
  * @package cyberinferno\Cabal\Helpers
  * @author Karthik P
  */
-class Item
+class ItemCode
 {
     const ITEM_GRADE_CONSTANT = 8192;
     const ITEM_BIND_ACCOUNT_CONSTANT = 4096;
@@ -26,8 +26,6 @@ class Item
     protected $_itemCode;
     protected $_itemGrade = 0;
     protected $_itemBinding = 0;
-    protected $_itemOption = 0;
-    protected $_itemDuration = 0;
 
     /**
      * Item constructor.
@@ -63,7 +61,7 @@ class Item
      * Sets the grade of the item to generated
      *
      * @param int $value
-     * @return Item $this
+     * @return ItemCode $this
      */
     public function setGrade($value)
     {
@@ -91,7 +89,7 @@ class Item
     /**
      * Sets the item binding to account
      *
-     * @return Item $this
+     * @return ItemCode $this
      */
     public function setAccountBinding()
     {
@@ -102,7 +100,7 @@ class Item
     /**
      * Sets the item binding to character
      *
-     * @return Item $this
+     * @return ItemCode $this
      */
     public function setCharacterBinding()
     {
@@ -113,7 +111,7 @@ class Item
     /**
      * Sets the item binding to character binding on usage
      *
-     * @return Item $this
+     * @return ItemCode $this
      */
     public function setCharacterBindingOnUsage()
     {
@@ -124,7 +122,7 @@ class Item
     /**
      * Removes the item binding
      *
-     * @return Item $this
+     * @return ItemCode $this
      */
     public function setNoBinding()
     {
@@ -137,7 +135,7 @@ class Item
      *
      * @return int
      */
-    public function generateItemCode()
+    public function generate()
     {
         return $this->_itemCode + $this->_itemBinding + $this->_itemGrade * self::ITEM_GRADE_CONSTANT;
     }

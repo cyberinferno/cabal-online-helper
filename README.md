@@ -53,13 +53,13 @@ $classList = cyberinferno\Cabal\Helpers\GameConstants::listClasses();
 
 // Item code generator
 // Initialise Item class with item code
-$item = new cyberinferno\Cabal\Helpers\Item(45); // Here we initialise with item code of Training Katana
+$item = new cyberinferno\Cabal\Helpers\ItemCode(45); // Here we initialise with item code of Training Katana
 $item->setAccountBinding(); // Setting the item to be account bound
 // $item->setCharacterBinding(); // Setting the item to be character bound
 // $item->setCharacterBindingOnUsage(); // Setting the item to be character bound on usage
 $item->setGrade(10); // Setting item to be grade 10
 // This will return the final item code for Account bound Training Katana +10
-$generatedItemCode = $item->generateItemCode();
+$generatedItemCode = $item->generate();
 ```
 
 Running tests locally
