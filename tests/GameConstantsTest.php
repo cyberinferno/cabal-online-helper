@@ -54,4 +54,12 @@ class GameConstantsTest extends TestCase
         $this->assertTrue(is_array($result));
         $this->assertEquals(27, count($result));
     }
+
+    public function testListBindings()
+    {
+        $myClass = new GameConstants();
+        $result = $myClass::listBindings();
+        $this->assertTrue(is_array($result));
+        $this->assertEquals(4, count($result));
+    }
 }

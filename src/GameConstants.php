@@ -95,4 +95,14 @@ class GameConstants
             31 => 'Permanent'
         ];
     }
+
+    public static function listBindings()
+    {
+        return [
+            0 => 'None',
+            4096 => 'Account Binding',
+            524288 => 'Character Binding',
+            1572864 => 'Character Binding on Usage'
+        ];
+    }
 }
