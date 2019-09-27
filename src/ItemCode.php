@@ -168,7 +168,7 @@ class ItemCode
         // Subtract the binding constant
         $itemCode = $this->_itemCode - $binding;
         $grade = 0;
-        // Subtract binding constant until base item code has been reached
+        // Subtract grade constant until base item code has been reached
         while ($itemCode > self::ITEM_GRADE_CONSTANT) {
             $grade++;
             $itemCode -= self::ITEM_GRADE_CONSTANT;
