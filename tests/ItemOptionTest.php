@@ -197,4 +197,29 @@ class ItemOptionTest extends TestCase
         $myClass->setSlotOption(8)->setSlotOption(8)->setSlotOption(8)->setSlotOption(8);
         $this->assertEquals('40000038', $myClass->generate(ItemOption::OUTPUT_FORMAT_HEXADECIMAL));
     }
+
+    public function testExtract()
+    {
+        $result = ItemOption::extract('300038ff');
+        $this->assertTrue(is_array($result));
+        $this->assertTrue(array_key_exists('slots', $result));
+        $this->assertEquals(3, $result['slots']);
+        $this->assertTrue(array_key_exists('crafts', $result));
+        $this->assertEquals(1, $result['crafts']);
+        $this->assertTrue(array_key_exists('slotOptions', $result));
+        $this->assertEquals(3, count($result['slotOptions']));
+        $this->assertTrue(array_key_exists('craftOptions', $result));
+        $this->assertEquals(1, count($result['craftOptions']));
+
+        $result = ItemOption::extract(255);
+        $this->assertTrue(is_array($result));
+        $this->assertTrue(array_key_exists('slots', $result));
+        $this->assertEquals(0, $result['slots']);
+        $this->assertTrue(array_key_exists('crafts', $result));
+        $this->assertEquals(1, $result['crafts']);
+        $this->assertTrue(array_key_exists('slotOptions', $result));
+        $this->assertEquals(0, count($result['slotOptions']));
+        $this->assertTrue(array_key_exists('craftOptions', $result));
+        $this->assertEquals(1, count($result['craftOptions']));
+    }
 }

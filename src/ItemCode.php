@@ -146,27 +146,28 @@ class ItemCode
     /**
      * Extracts information from the final generated item code
      *
+     * @param int $generatedItemCode
      * @return array
      */
-    public function extract()
+    public static function extract($generatedItemCode)
     {
         // We cannot extract data if either of these conditions are met hence return the input item code itself
-        if ($this->_itemCode > self::MAX_GENERATED_ITEM_CODE || $this->_itemCode <= self::MAX_BASE_ITEM_CODE) {
+        if ($generatedItemCode > self::MAX_GENERATED_ITEM_CODE || $generatedItemCode <= self::MAX_BASE_ITEM_CODE) {
             return [
-                'itemCode' => $this->_itemCode,
+                'itemCode' => $generatedItemCode,
                 'binding' => 0,
                 'grade' => 0
             ];
         }
         $binding = 0;
         // Find the binding constant
-        if ($this->_itemCode > self::ITEM_BIND_CHARACTER_ON_USAGE_CONSTANT) {
+        if ($generatedItemCode > self::ITEM_BIND_CHARACTER_ON_USAGE_CONSTANT) {
             $binding = self::ITEM_BIND_CHARACTER_ON_USAGE_CONSTANT;
-        } else if ($this->_itemCode > self::ITEM_BIND_CHARACTER_CONSTANT) {
+        } else if ($generatedItemCode > self::ITEM_BIND_CHARACTER_CONSTANT) {
             $binding = self::ITEM_BIND_CHARACTER_CONSTANT;
         }
         // Subtract the binding constant
-        $itemCode = $this->_itemCode - $binding;
+        $itemCode = $generatedItemCode - $binding;
         $grade = 0;
         // Subtract grade constant until base item code has been reached
         while ($itemCode > self::ITEM_GRADE_CONSTANT) {

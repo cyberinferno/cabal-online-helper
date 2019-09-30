@@ -104,8 +104,7 @@ class ItemCodeTest extends TestCase
 
     public function testExtract()
     {
-        $myClass = new ItemCode(3213);
-        $result = $myClass->extract();
+        $result = ItemCode::extract(3213);
         $this->assertTrue(is_array($result));
         $this->assertTrue(array_key_exists('itemCode', $result));
         $this->assertEquals(3213, $result['itemCode']);
@@ -114,13 +113,12 @@ class ItemCodeTest extends TestCase
         $this->assertTrue(array_key_exists('grade', $result));
         $this->assertEquals(0, $result['grade']);
 
-        $myClass = new ItemCode(
+        $result = ItemCode::extract(
             (new ItemCode(1))
                 ->setCharacterBindingOnUsage()
                 ->setGrade(3)
                 ->generate()
         );
-        $result = $myClass->extract();
         $this->assertTrue(is_array($result));
         $this->assertTrue(array_key_exists('itemCode', $result));
         $this->assertEquals(1, $result['itemCode']);
@@ -129,13 +127,12 @@ class ItemCodeTest extends TestCase
         $this->assertTrue(array_key_exists('grade', $result));
         $this->assertEquals(3, $result['grade']);
 
-        $myClass = new ItemCode(
+        $result = ItemCode::extract(
             (new ItemCode(12))
                 ->setCharacterBinding()
                 ->setGrade(6)
                 ->generate()
         );
-        $result = $myClass->extract();
         $this->assertTrue(is_array($result));
         $this->assertTrue(array_key_exists('itemCode', $result));
         $this->assertEquals(12, $result['itemCode']);
@@ -144,13 +141,12 @@ class ItemCodeTest extends TestCase
         $this->assertTrue(array_key_exists('grade', $result));
         $this->assertEquals(6, $result['grade']);
 
-        $myClass = new ItemCode(
+        $result = ItemCode::extract(
             (new ItemCode(1253))
                 ->setAccountBinding()
                 ->setGrade(10)
                 ->generate()
         );
-        $result = $myClass->extract();
         $this->assertTrue(is_array($result));
         $this->assertTrue(array_key_exists('itemCode', $result));
         $this->assertEquals(1253, $result['itemCode']);
@@ -159,12 +155,11 @@ class ItemCodeTest extends TestCase
         $this->assertTrue(array_key_exists('grade', $result));
         $this->assertEquals(10, $result['grade']);
 
-        $myClass = new ItemCode(
+        $result = ItemCode::extract(
             (new ItemCode(2897))
                 ->setGrade(15)
                 ->generate()
         );
-        $result = $myClass->extract();
         $this->assertTrue(is_array($result));
         $this->assertTrue(array_key_exists('itemCode', $result));
         $this->assertEquals(2897, $result['itemCode']);
@@ -173,12 +168,11 @@ class ItemCodeTest extends TestCase
         $this->assertTrue(array_key_exists('grade', $result));
         $this->assertEquals(15, $result['grade']);
 
-        $myClass = new ItemCode(
+        $result = ItemCode::extract(
             (new ItemCode(4095))
                 ->setCharacterBinding()
                 ->generate()
         );
-        $result = $myClass->extract();
         $this->assertTrue(is_array($result));
         $this->assertTrue(array_key_exists('itemCode', $result));
         $this->assertEquals(4095, $result['itemCode']);

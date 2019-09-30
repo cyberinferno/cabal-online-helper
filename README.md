@@ -81,6 +81,12 @@ $myClass = new cyberinferno\Cabal\Helpers\ItemOption(3, 1);
 $myClass->setCraftOption('F', 'F');
 // This will return hexadecimal string item option i.e '300000FF'
 $generatedItemOption = $itemOption->generate(cyberinferno\Cabal\Helpers\ItemOption::OUTPUT_FORMAT_HEXADECIMAL);
+
+// Extract item code
+$extractedItemCode = cyberinferno\Cabal\Helpers\ItemCode::extract(123012);
+
+// Extract item option
+$extractedItemOption = cyberinferno\Cabal\Helpers\ItemOption::extract('300038ff');
 ```
 
 Running tests locally

@@ -61,7 +61,7 @@ class ItemOption
      * ItemOption constructor.
      * @param int $slots
      * @param int $crafts
-     * @throws \Exception
+     * @throws \cyberinferno\Cabal\Helpers\Exceptions\MaxOptionException
      */
     public function __construct($slots = 0, $crafts = 0)
     {
@@ -221,5 +221,63 @@ class ItemOption
             return $this->_slots . $optionString;
         }
         return hexdec($this->_slots . $optionString);
+    }
+
+    /**
+     * Extracts item options from generated item option
+     *
+     * @param int|string $generatedItemOption
+     * @return array
+     */
+    public static function extract($generatedItemOption)
+    {
+        if (is_int($generatedItemOption)) {
+            $generatedItemOption = dechex($generatedItemOption);
+        }
+        if (strlen($generatedItemOption) < 8) {
+            $generatedItemOption = str_repeat('0', 8 - strlen($generatedItemOption)) . $generatedItemOption;
+        }
+        $generatedItemOption = strtoupper($generatedItemOption);
+        if (hexdec($generatedItemOption) > hexdec('4FFFFFFF')) {
+            // Invalid generated option hence return default values
+            return [
+                'slots' => 0,
+                'crafts' => 0,
+                'slotOptions' => [],
+                'craftOptions' => []
+            ];
+        }
+        $craftOptions = [];
+        $slotOptions = [];
+        // Extract last 3 options
+        for ($i = 1; $i <= 3; $i++) {
+            $currentOption = substr($generatedItemOption, -1 * ($i * 2), 2);
+            if (in_array($currentOption[0], ['9', 'A', 'B', 'C', 'D', 'E', 'F'])) {
+                $craftOptions[] = [
+                    'craftLevel' => $currentOption[0],
+                    'craftOption' => $currentOption[1]
+                ];
+            } else {
+                for ($j = 1; $j <= (int)$currentOption[0]; $j++) {
+                    if ($currentOption[1] == '0') {
+                        continue;
+                    }
+                    $slotOptions[] = [
+                        'slotOption' => $currentOption[1]
+                    ];
+                }
+            }
+        }
+        if ($generatedItemOption[1] != '0') {
+            $slotOptions[] = [
+                'slotOption' => $generatedItemOption[1]
+            ];
+        }
+        return [
+            'slots' => (int)$generatedItemOption[0],
+            'crafts' => count($craftOptions),
+            'slotOptions' => $slotOptions,
+            'craftOptions' => $craftOptions
+        ];
     }
 }
