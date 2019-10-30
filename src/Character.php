@@ -109,7 +109,7 @@ class Character
     /**
      * Convert little endian hex string to big endian hex string
      *
-     * @param string Little endian HEX string
+     * @param string $endian Little endian HEX string
      *
      * @return string
      */
