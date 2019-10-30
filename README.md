@@ -87,6 +87,9 @@ $extractedItemCode = cyberinferno\Cabal\Helpers\ItemCode::extract(123012);
 
 // Extract item option
 $extractedItemOption = cyberinferno\Cabal\Helpers\ItemOption::extract('300038ff');
+
+// Decode binary item list
+$decodedItems = cyberinferno\Cabal\Helpers\Character::DecodeBinaryItemList('0x690000000000000000000000000000000000');
 ```
 
 Running tests locally
