@@ -18,7 +18,7 @@ class CharacterTest extends TestCase
     public function testEncodeStyle()
     {
         $myClass = new Character();
-        $result = $myClass::EncodeStyle(2,12,4,0,1,20,5);
+        $result = $myClass::EncodeStyle(2, 12, 4, 0, 1, 20, 5);
         $this->assertEquals(159908261, $result);
     }
 
@@ -45,7 +45,7 @@ class CharacterTest extends TestCase
     public function testEncodePosition()
     {
         $myClass = new Character();
-        $result = $myClass::EncodePosition(24,18);
+        $result = $myClass::EncodePosition(24, 18);
         $this->assertEquals(1572882, $result);
     }
 
@@ -57,5 +57,42 @@ class CharacterTest extends TestCase
         $this->assertArrayHasKey('y', $result);
         $this->assertEquals(24, $result['x']);
         $this->assertEquals(18, $result['y']);
+    }
+
+    public function testDecodeBinaryItemList()
+    {
+        $myClass = new Character();
+        $result = $myClass::DecodeBinaryItemList(
+            '0x65E0190014000004FF3800300000000000F869000000000000000000000002000000000065E0190015000004FF3F0030040014EDEFCD'
+        );
+        $this->assertEquals(3, count($result));
+        $this->assertArrayHasKey('itemCode', $result[0]);
+        $this->assertArrayHasKey('itemOption', $result[0]);
+        $this->assertArrayHasKey('itemInventorySlot', $result[0]);
+        $this->assertEquals(1695845, $result[0]['itemCode']);
+        $this->assertEquals(805320959, $result[0]['itemOption']);
+        $this->assertEquals(1, $result[0]['itemInventorySlot']);
+        $this->assertArrayHasKey('itemCode', $result[1]);
+        $this->assertArrayHasKey('itemOption', $result[1]);
+        $this->assertArrayHasKey('itemInventorySlot', $result[1]);
+        $this->assertEquals(105, $result[1]['itemCode']);
+        $this->assertEquals(0, $result[1]['itemOption']);
+        $this->assertEquals(3, $result[1]['itemInventorySlot']);
+        $this->assertArrayHasKey('itemCode', $result[2]);
+        $this->assertArrayHasKey('itemOption', $result[2]);
+        $this->assertArrayHasKey('itemInventorySlot', $result[2]);
+        $this->assertEquals(1695845, $result[2]['itemCode']);
+        $this->assertEquals(805322751, $result[2]['itemOption']);
+        $this->assertEquals(5, $result[2]['itemInventorySlot']);
+
+        $result = $myClass::DecodeBinaryItemList(
+            '690000000000000000000000000000000000'
+        );
+        $this->assertArrayHasKey('itemCode', $result[0]);
+        $this->assertArrayHasKey('itemOption', $result[0]);
+        $this->assertArrayHasKey('itemInventorySlot', $result[0]);
+        $this->assertEquals(105, $result[0]['itemCode']);
+        $this->assertEquals(0, $result[0]['itemOption']);
+        $this->assertEquals(1, $result[0]['itemInventorySlot']);
     }
 }

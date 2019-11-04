@@ -81,4 +81,43 @@ class Character
         $position['y'] = $pos ^ ($position['x'] << 16);
         return $position;
     }
+
+    /**
+     * Decode binary item listing like inventory data or warehouse data
+     *
+     * @param string $itemString
+     * @return array
+     */
+    public static function DecodeBinaryItemList($itemString)
+    {
+        $items = [];
+        if (substr($itemString, 0, 2) == '0x') {
+            $start = 2;
+        } else {
+            $start = 0;
+        }
+        for ($i = $start; $i < strlen($itemString); $i += 36) {
+            $items[] = [
+                'itemCode' => hexdec((new self())->convertToBigEndian(substr($itemString, $i, 6))),
+                'itemOption' => hexdec((new self())->convertToBigEndian(substr($itemString, $i + 16, 8))),
+                'itemInventorySlot' => hexdec((new self())->convertToBigEndian(substr($itemString, $i + 24, 2))) + 1
+            ];
+        }
+        return $items;
+    }
+
+    /**
+     * Convert little endian hex string to big endian hex string
+     *
+     * @param string $endian Little endian HEX string
+     *
+     * @return string
+     */
+    private function convertToBigEndian($endian)
+    {
+        if (strlen($endian) % 2 != 0) {
+            $endian = '0' . $endian;
+        }
+        return implode('', array_reverse(str_split($endian, 2)));
+    }
 }
