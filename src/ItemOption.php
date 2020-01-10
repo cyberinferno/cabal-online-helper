@@ -224,7 +224,7 @@ class ItemOption
     }
 
     /**
-     * Extracts item options from generated item option
+     * Extracts item options details from generated item option
      *
      * @param int|string $generatedItemOption
      * @return array
