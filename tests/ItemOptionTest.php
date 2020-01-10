@@ -222,4 +222,20 @@ class ItemOptionTest extends TestCase
         $this->assertTrue(array_key_exists('craftOptions', $result));
         $this->assertEquals(1, count($result['craftOptions']));
     }
+
+    public function testRemoveSlotOption()
+    {
+        $result = ItemOption::removeSlotOption('30001C28', 'C', ItemOption::OUTPUT_FORMAT_HEXADECIMAL);
+        $this->assertEquals('30000028', $result);
+        $result = ItemOption::removeSlotOption('30001C28', 8, ItemOption::OUTPUT_FORMAT_HEXADECIMAL);
+        $this->assertEquals('30001C18', $result);
+    }
+
+    /**
+     * @expectedException \cyberinferno\Cabal\Helpers\Exceptions\OptionNotFoundException
+     */
+    public function testIfOptionNotFoundExceptionIsThrownInRemoveSlotOption()
+    {
+        ItemOption::removeSlotOption('30001C28', 'A');
+    }
 }

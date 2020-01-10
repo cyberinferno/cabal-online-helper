@@ -6,6 +6,7 @@ use cyberinferno\Cabal\Helpers\Exceptions\InvalidCraftLevelException;
 use cyberinferno\Cabal\Helpers\Exceptions\InvalidOptionException;
 use cyberinferno\Cabal\Helpers\Exceptions\MaxOptionException;
 use cyberinferno\Cabal\Helpers\Exceptions\OptionLimitException;
+use cyberinferno\Cabal\Helpers\Exceptions\OptionNotFoundException;
 
 /**
  * Class ItemOption
@@ -279,5 +280,44 @@ class ItemOption
             'slotOptions' => $slotOptions,
             'craftOptions' => $craftOptions
         ];
+    }
+
+    /**
+     * Removea a particular option from item option code
+     *
+     * @param string $inputOptionCode
+     * @param string $optionToRemove
+     * @param string $outputFormat
+     * @return string|int
+     * @throws OptionNotFoundException
+     */
+    public static function removeSlotOption($inputOptionCode, $optionToRemove, $outputFormat = self::OUTPUT_FORMAT_INTEGER)
+    {
+        // Extract input options
+        $extractedOptions = self::extract($inputOptionCode);
+        // Traverse through slot options to find option index
+        $filledSlotCount = count($extractedOptions['slotOptions']);
+        $optionIndex = null;
+        for ($i = 0; $i < $filledSlotCount; $i++) {
+            if ($extractedOptions['slotOptions'][$i]['slotOption'] == $optionToRemove) {
+                $optionIndex = $i;
+                break;
+            }
+        }
+        // If option index not found in the extracted options then throw exception
+        if ($optionIndex === null) {
+            throw new OptionNotFoundException();
+        }
+        // Remove the option
+        unset($extractedOptions['slotOptions'][$optionIndex]);
+        // Return regenerated item option code
+        $generator = new self($extractedOptions['slots'], $extractedOptions['crafts']);
+        foreach ($extractedOptions['slotOptions'] as $slot) {
+            $generator->setSlotOption($slot['slotOption']);
+        }
+        foreach ($extractedOptions['craftOptions'] as $craft) {
+            $generator->setCraftOption($craft['craftLevel'], $craft['craftOption']);
+        }
+        return $generator->generate($outputFormat);
     }
 }

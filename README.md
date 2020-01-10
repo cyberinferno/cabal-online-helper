@@ -90,6 +90,10 @@ $extractedItemOption = cyberinferno\Cabal\Helpers\ItemOption::extract('300038ff'
 
 // Decode binary item list
 $decodedItems = cyberinferno\Cabal\Helpers\Character::DecodeBinaryItemList('0x690000000000000000000000000000000000');
+
+// Remove slot option
+// This will return 30001C18
+$result = cyberinferno\Cabal\Helpers\ItemOption::removeSlotOption('30001C28', 8, cyberinferno\Cabal\Helpers\ItemOption::OUTPUT_FORMAT_HEXADECIMAL);
 ```
 
 Running tests locally
