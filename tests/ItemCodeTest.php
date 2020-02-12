@@ -48,9 +48,9 @@ class ItemCodeTest extends TestCase
     public function testSetGradeAboveMaximum()
     {
         $myClass = new ItemCode(1);
-        $result = $myClass->setGrade(16);
+        $result = $myClass->setGrade(21);
         $this->assertTrue($result instanceof ItemCode);
-        $this->assertEquals(15, $myClass->getGrade());
+        $this->assertEquals(20, $myClass->getGrade());
     }
 
     public function testGetBinding()

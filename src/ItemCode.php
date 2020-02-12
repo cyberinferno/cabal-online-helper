@@ -21,7 +21,7 @@ class ItemCode
     const MAX_GENERATED_ITEM_CODE = 1699839;
 
     const MIN_GRADE = 0;
-    const MAX_GRADE = 15;
+    const MAX_GRADE = 20;
 
     /**
      * @var int
