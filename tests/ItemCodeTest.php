@@ -181,4 +181,25 @@ class ItemCodeTest extends TestCase
         $this->assertTrue(array_key_exists('grade', $result));
         $this->assertEquals(0, $result['grade']);
     }
+
+    public function testRemoveBinding()
+    {
+        $result = ItemCode::extract(ItemCode::removeBinding(
+            (new ItemCode(2897))
+                ->setGrade(15)
+                ->setCharacterBindingOnUsage()
+                ->generate()
+        ));
+        $this->assertEquals(2897, $result['itemCode']);
+        $this->assertEquals(0, $result['binding']);
+        $this->assertEquals(15, $result['grade']);
+        $result = ItemCode::extract(ItemCode::removeBinding(
+            (new ItemCode(4095))
+                ->setAccountBinding()
+                ->generate()
+        ));
+        $this->assertEquals(4095, $result['itemCode']);
+        $this->assertEquals(0, $result['binding']);
+        $this->assertEquals(0, $result['grade']);
+    }
 }

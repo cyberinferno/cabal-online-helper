@@ -185,4 +185,14 @@ class ItemCode
             'grade' => $grade
         ];
     }
+
+    public static function removeBinding($itemCode)
+    {
+        // Extract item code
+        $extractedItemCode = self::extract($itemCode);
+        // Regenerate item code without binding and return
+        $generator = new self($extractedItemCode['itemCode']);
+        $generator->setGrade($extractedItemCode['grade']);
+        return $generator->generate();
+    }
 }
