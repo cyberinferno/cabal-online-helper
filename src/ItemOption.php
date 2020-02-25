@@ -283,12 +283,16 @@ class ItemOption
     }
 
     /**
-     * Removea a particular option from item option code
+     * Removes a particular option from item option code
      *
      * @param string $inputOptionCode
      * @param string $optionToRemove
      * @param string $outputFormat
      * @return string|int
+     * @throws InvalidCraftLevelException
+     * @throws InvalidOptionException
+     * @throws MaxOptionException
+     * @throws OptionLimitException
      * @throws OptionNotFoundException
      */
     public static function removeSlotOption($inputOptionCode, $optionToRemove, $outputFormat = self::OUTPUT_FORMAT_INTEGER)
@@ -315,6 +319,29 @@ class ItemOption
         foreach ($extractedOptions['slotOptions'] as $slot) {
             $generator->setSlotOption($slot['slotOption']);
         }
+        foreach ($extractedOptions['craftOptions'] as $craft) {
+            $generator->setCraftOption($craft['craftLevel'], $craft['craftOption']);
+        }
+        return $generator->generate($outputFormat);
+    }
+
+    /**
+     * Removes all slot options from item option code
+     *
+     * @param $inputOptionCode
+     * @param string $outputFormat
+     * @return int|string
+     * @throws InvalidCraftLevelException
+     * @throws InvalidOptionException
+     * @throws MaxOptionException
+     * @throws OptionLimitException
+     */
+    public static function removeAllSlotOptions($inputOptionCode, $outputFormat = self::OUTPUT_FORMAT_INTEGER)
+    {
+        // Extract input options
+        $extractedOptions = self::extract($inputOptionCode);
+        // Regenerate options and return
+        $generator = new self($extractedOptions['slots'], $extractedOptions['crafts']);
         foreach ($extractedOptions['craftOptions'] as $craft) {
             $generator->setCraftOption($craft['craftLevel'], $craft['craftOption']);
         }

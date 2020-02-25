@@ -238,4 +238,12 @@ class ItemOptionTest extends TestCase
     {
         ItemOption::removeSlotOption('30001C28', 'A');
     }
+
+    public function testRemoveAllSlotOptions()
+    {
+        $result = ItemOption::removeAllSlotOptions('30001C28', ItemOption::OUTPUT_FORMAT_HEXADECIMAL);
+        $this->assertEquals('30000000', $result);
+        $result = ItemOption::removeAllSlotOptions('3000FC28', ItemOption::OUTPUT_FORMAT_HEXADECIMAL);
+        $this->assertEquals('300000FC', $result);
+    }
 }
