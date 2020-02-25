@@ -186,6 +186,12 @@ class ItemCode
         ];
     }
 
+    /**
+     * Removes binding from the item code
+     *
+     * @param $itemCode
+     * @return int
+     */
     public static function removeBinding($itemCode)
     {
         // Extract item code
